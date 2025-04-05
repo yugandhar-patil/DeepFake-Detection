@@ -1,0 +1,8 @@
+Flask==2.2.2
+tensorflow
+opencv-python
+Pillow
+requests
+scipy
+matplotlib
+scikit-learn

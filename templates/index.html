@@ -1,0 +1,107 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deepfake Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background: #2c3e50;
+            color: #ecf0f1;
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            margin: 30px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label, p {
+            margin: 10px 0 5px;
+        }
+        input[type="file"],
+        input[type="text"],
+        input[type="submit"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background: #3498db;
+            border: none;
+            color: white;
+            margin-top: 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        input[type="submit"]:hover {
+            background: #2980b9;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .specs {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .input-type {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Deepfake Detection</h1>
+    </header>
+    <div class="container">
+        <div class="specs">
+            <p><strong>Input Specifications:</strong></p>
+            <ul>
+                <li>Allowed image formats: JPG, JPEG, PNG</li>
+                <li>Allowed video formats: MP4, AVI, MOV</li>
+                <li>Maximum file size: 50 MB</li>
+            </ul>
+        </div>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="input-type">
+                <p>Please select the type of your input file:</p>
+                <label>
+                    <input type="radio" name="input_type" value="image" checked> Image
+                </label>
+                <label>
+                    <input type="radio" name="input_type" value="video"> Video
+                </label>
+            </div>
+            <label>Select a file to upload:</label>
+            <input type="file" name="file" accept="image/*,video/*" required>
+            <input type="submit" value="Detect">
+        </form>
+        {% if result %}
+        <div class="result">
+            <p>Result: {{ result }}</p>
+            <p>Confidence: {{ confidence }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
